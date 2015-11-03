@@ -2,6 +2,9 @@
   "name": "Rectangular-Demo",
   "private": true,
   "version": "0.0.0",
+  "engines": {
+    "node": "v4.2.1"
+  },
   "description": "A starter project for AngularJS",
   "repository": "https://github.com/angular/angular-seed",
   "license": "MIT",
