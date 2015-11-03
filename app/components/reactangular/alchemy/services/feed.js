@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('Feed', Feed);
+        .factory('AlFeed', Feed);
 
     Feed.$inject = ['Alchemyapi', 'RectHelper'];
 

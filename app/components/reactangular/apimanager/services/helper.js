@@ -8,6 +8,7 @@
 
     RectHelper.$inject = [];
 
+    //my apikey: 9fc95d1f41757024e1df4fb4066cdaad8ca76cd0
     function RectHelper() {
         return {
             alchemy: {
@@ -15,11 +16,11 @@
                     baseUrl: 'http://gateway-a.watsonplatform.net',
                     outputMode: 'json'
                 },
-                apiKey: 'a25e63fd5b691fe370ea09511b79fbd8c0a54d37',
+                apiKey: '9fc95d1f41757024e1df4fb4066cdaad8ca76cd0',
                 api: {
                     'sentiment': {
-                        html: 'HtmlGetTextSentiment',
-                        htmlTargeted: 'HtmlGetTargetedSentiment',
+                        html: 'HTMLGetTextSentiment',
+                        htmlTargeted: 'HTMLGetTargetedSentiment',
                         text: 'TextGetTextSentiment',
                         textTargeted: 'TextGetTargetedSentiment',
                         url: 'URLGetTextSentiment',

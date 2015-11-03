@@ -1,19 +1,190 @@
 <!--Input form-->
-<md-content layout-padding>
-    <div layout layout-margin>
-        <md-input-container flex="">
-            <label>Web URL</label>
-            <input ng-model="callApiCtrl.url">
-        </md-input-container>
-        <div layout layout-align="center center">
-            <md-button class="md-raised md-primary"
-                       ng-click="callApiCtrl.retriveData()">Retrive
-            </md-button>
-        </div>
-    </div>
-    <div layout layout-margin>
-        <textarea ng-model="callApiCtrl.result" disabled
-                  flex=""
-                  style="height: 400px"></textarea>
-    </div>
-</md-content>
+<div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom
+                 class="md-primary">
+            <!--Sentiment-->
+            <md-tab label="Sentiment">
+                <md-content>
+                    <md-tabs md-dynamic-height
+                             class="md-accent">
+                        <!--Url-->
+                        <md-tab label="Url">
+                            <md-content layout-padding>
+                                <div layout layout-margin>
+                                    <md-input-container flex="">
+                                        <label>Web URL</label>
+                                        <input ng-model="callApiCtrl.url">
+                                    </md-input-container>
+                                    <div layout layout-align="center center">
+                                        <md-button class="md-raised md-primary"
+                                                   ng-click="callApiCtrl.urlRetrieveData()">Retrive
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div layout layout-margin>
+                                    <textarea ng-model="callApiCtrl.urlResult" disabled
+                                              flex=""
+                                              style="height: 400px"></textarea>
+                                </div>
+                            </md-content>
+                        </md-tab>
+
+                        <!--html-->
+                        <md-tab label="Html">
+                            <md-content layout-padding>
+                                <div layout layout-margin>
+                                    <md-input-container flex>
+                                        <label>Html Content</label>
+                                        <input ng-model="callApiCtrl.html">
+                                    </md-input-container>
+                                    <div layout layout-align="center start">
+                                        <md-button class="md-raised md-primary"
+                                                   ng-click="callApiCtrl.htmlRetrieveData()">Retrive
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div layout layout-margin>
+                                    <textarea ng-model="callApiCtrl.htmlResult" disabled
+                                              flex
+                                              style="height: 400px"></textarea>
+                                </div>
+                            </md-content>
+                        </md-tab>
+
+                        <!--text-->
+                        <md-tab label="Text">
+                            <md-content layout-padding>
+                                <div layout layout-margin>
+                                    <md-input-container flex="">
+                                        <label>Text Content</label>
+                                        <input ng-model="callApiCtrl.text">
+                                    </md-input-container>
+                                    <div layout layout-align="center start">
+                                        <md-button class="md-raised md-primary"
+                                                   ng-click="callApiCtrl.textRetrieveData()">Retrive
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div layout layout-margin>
+                                    <textarea ng-model="callApiCtrl.textResult" disabled
+                                              flex=""
+                                              style="height: 400px"></textarea>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </md-tab>
+
+            <!--Face detection-->
+            <md-tab label="Face Detection">
+                <md-content>
+                    <md-tabs md-dynamic-height class="md-accent">
+                        <!--url-->
+                        <md-tab label="Url">
+                            <md-content layout-padding>
+                                <div layout layout-margin>
+                                    <md-input-container flex="">
+                                        <label>Web URL</label>
+                                        <input ng-model="callApiCtrl.imageUrl">
+                                    </md-input-container>
+                                    <div layout layout-align="center center">
+                                        <md-button class="md-raised md-primary"
+                                                   ng-click="callApiCtrl.imageUrlRetrieveData()">Retrive
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div layout layout-margin>
+                                    <textarea ng-model="callApiCtrl.imageUrlResult" disabled
+                                              flex=""
+                                              style="height: 400px"></textarea>
+                                </div>
+                            </md-content>
+                        </md-tab>
+
+                        <!--upload image-->
+                        <md-tab label="Image">
+                            <md-content layout-padding>
+                                <div layout layout-margin>
+                                    <md-input-container flex="">
+                                        <label>Image</label>
+                                        <input type="file"
+                                               onchange="angular.element(this).scope().callApiCtrl.fileChangeHandler(this) ">
+                                    </md-input-container>
+                                    <div layout layout-align="center center">
+                                        <md-button class="md-raised md-primary"
+                                                   ng-click="callApiCtrl.imageRetrieveData()">Retrive
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div layout layout-margin>
+                                    <textarea ng-model="callApiCtrl.imageResult" disabled
+                                              flex=""
+                                              style="height: 400px"></textarea>
+                                </div>
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </md-tab>
+
+            <!--News-->
+            <md-tab label="News">
+                <div layout class="md-padding">
+                    <md-content flex>
+                        <div layout>
+                            <!--Max-->
+                            <md-input-container flex>
+                                <label>Start</label>
+                                <input type="text" ng-model="callApiCtrl.news.start">
+                            </md-input-container>
+
+                            <!--Min-->
+                            <md-input-container flex>
+                                <label>End</label>
+                                <input type="text" ng-model="callApiCtrl.news.end">
+                            </md-input-container>
+
+                            <!--Max Result-->
+                            <md-input-container flex>
+                                <label>Max Result</label>
+                                <input type="number" ng-model="callApiCtrl.news.maxResults">
+                            </md-input-container>
+                        </div>
+
+                        <div layout>
+                            <!--Title-->
+                            <md-input-container flex>
+                                <label>Title</label>
+                                <input type="text" ng-model="callApiCtrl.news.title">
+                            </md-input-container>
+                        </div>
+
+                        <div layout>
+                            <!--Return-->
+                            <md-input-container flex>
+                                <label>Return</label>
+                                <input type="text" ng-model="callApiCtrl.news.return">
+                            </md-input-container>
+                        </div>
+                    </md-content>
+
+                    <div layout layout-align="center start">
+                        <button class="md-button md-primary md-raised"
+                                ng-click="callApiCtrl.newsRetrieveData()">
+                            Retrieve
+                        </button>
+                    </div>
+                </div>
+
+                <!--Result-->
+                <div layout layout-margin>
+                    <textarea ng-model="callApiCtrl.newsResult" disabled
+                              flex=""
+                              style="height: 400px"></textarea>
+                </div>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

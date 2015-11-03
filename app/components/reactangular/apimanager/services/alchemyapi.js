@@ -45,7 +45,7 @@
             var requestParams = prepareRequestParams(config.queryParams),
                 parentRoute = config.parentRoute || 'calls/' + config.endpointType;
 
-            if(!isImage){
+            if (!isImage) {
                 postData = prepareRequestBody(postData);
             }
 
@@ -80,14 +80,15 @@
 
             //remove the last '&' character
             queryData = queryData.slice(0, -1);
-            console.log(queryData);
             return queryData;
         }
 
-        function prepareRequestParams(queryParams){
+        function prepareRequestParams(queryParams) {
+            //Assure hat queryParams is not null/ undefined
+            queryParams = queryParams || {};
             queryParams.apikey = RectHelper.alchemy.apiKey;
             queryParams.outputMode = queryParams.outputMode || RectHelper.alchemy.defaultConfig.outputMode;
-
+            console.log(queryParams);
             return queryParams;
         }
 

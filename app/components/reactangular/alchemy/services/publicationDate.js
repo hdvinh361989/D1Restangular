@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('PublicationDate', PublicationDate);
+        .factory('AlPublicationDate', PublicationDate);
 
     PublicationDate.$inject = ['Alchemyapi', 'RectHelper'];
 

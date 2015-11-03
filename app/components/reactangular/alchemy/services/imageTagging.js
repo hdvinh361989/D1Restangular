@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('ImageTagging', ImageTagging);
+        .factory('AlImageTagging', ImageTagging);
 
     ImageTagging.$inject = ['Alchemyapi', 'RectHelper'];
 

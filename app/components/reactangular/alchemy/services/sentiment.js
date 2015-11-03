@@ -36,7 +36,7 @@
 
         function urlGetTargeted(params) {
             var config = {
-                type: 'url',
+                endpointType: 'url',
                 endpoint: RectHelper.alchemy.api.sentiment.urlTargeted,
                 queryParams: params
             };
@@ -45,7 +45,7 @@
 
         function htmlGetText(postData, params) {
             var config = {
-                    type: 'html',
+                    endpointType: 'html',
                     endpoint: RectHelper.alchemy.api.sentiment.html,
                     queryParams: params
                 },
@@ -57,7 +57,7 @@
 
         function htmlGetTargeted(postData, params) {
             var config = {
-                    type: 'html',
+                    endpointType: 'html',
                     endpoint: RectHelper.alchemy.api.sentiment.htmlTargeted,
                     queryParams: params
                 },
@@ -69,19 +69,19 @@
 
         function textGetText(postData, params) {
             var config = {
-                    type: 'text',
+                    endpointType: 'text',
                     endpoint: RectHelper.alchemy.api.sentiment.text,
                     queryParams: params
                 },
                 data = {
-                    html: postData
+                    text: postData
                 };
             return Alchemyapi.post(data, config);
         }
 
         function textGetTargeted(postData, params) {
             var config = {
-                    type: 'text',
+                    endpointType: 'text',
                     endpoint: RectHelper.alchemy.api.sentiment.textTargeted,
                     queryParams: params
                 },

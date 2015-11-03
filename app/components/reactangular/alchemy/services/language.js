@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('Language', Language);
+        .factory('AlLanguage', Language);
 
     Language.$inject = ['Alchemyapi', 'RectHelper'];
 

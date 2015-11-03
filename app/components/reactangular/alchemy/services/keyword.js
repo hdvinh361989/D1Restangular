@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('Keyword', Keyword);
+        .factory('AlKeyword', Keyword);
 
     Keyword.$inject = ['Alchemyapi', 'RectHelper'];
 

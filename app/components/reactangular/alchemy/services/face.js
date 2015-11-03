@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('Face', Face);
+        .factory('AlFace', Face);
 
     Face.$inject = ['Alchemyapi', 'RectHelper'];
 
@@ -31,6 +31,7 @@
         }
 
         function image(imageFile, params){
+            params = params || {};
             params.imagePostMode = 'raw';
             var config = {
                 endpointType: 'image',

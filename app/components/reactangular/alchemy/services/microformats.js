@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('MicroFormats', MicroFormats);
+        .factory('AlMicroFormats', MicroFormats);
 
     MicroFormats.$inject = ['Alchemyapi', 'RectHelper'];
 

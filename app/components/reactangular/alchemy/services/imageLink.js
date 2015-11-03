@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('ImageLink', ImageLink);
+        .factory('AlImageLink', ImageLink);
 
     ImageLink.$inject = ['Alchemyapi', 'RectHelper'];
 

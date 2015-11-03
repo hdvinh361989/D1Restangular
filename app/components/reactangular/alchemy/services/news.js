@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('News', News);
+        .factory('AlNews', News);
 
     News.$inject = ['Alchemyapi', 'RectHelper'];
 
@@ -22,11 +22,11 @@
          In this case "calls/data" is parentRoute*/
         function getNews(params) {
             var config = {
-                type: 'data',
+                endpointType: 'data',
                 endpoint: RectHelper.alchemy.api.news.getNews,
                 queryParams: params
             };
-            return Alchemyapi.post(config);
+            return Alchemyapi.post(null, config);
         }
 
     }

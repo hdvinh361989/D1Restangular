@@ -3,7 +3,7 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('Taxonomy', Taxonomy);
+        .factory('AlTaxonomy', Taxonomy);
 
     Taxonomy.$inject = ['Alchemyapi', 'RectHelper'];
 
