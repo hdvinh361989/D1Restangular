@@ -41,9 +41,13 @@
 
 
         //Global function
-        function post(postData, config) {
+        function post(postData, config, isImage) {
             var requestParams = prepareRequestParams(config.queryParams),
                 parentRoute = config.parentRoute || 'calls/' + config.endpointType;
+
+            if(!isImage){
+                postData = prepareRequestBody(postData);
+            }
 
             return AlchemyRestangular
                 .all(parentRoute)
@@ -68,8 +72,6 @@
         //Local function
         function prepareRequestBody(queryParams) {
             var queryData = "";
-            queryParams.apikey = RectHelper.alchemy.apiKey;
-            queryParams.outputMode = queryParams.outputMode || RectHelper.alchemy.defaultConfig.outputMode;
 
             //Create request body from queryParams
             angular.forEach(queryParams, function (value, key) {

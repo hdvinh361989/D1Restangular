@@ -3,19 +3,19 @@
  */
 (function () {
     angular.module('rectangular.alchemy')
-        .factory('Sentiment', Sentiment);
+        .factory('AlSentiment', Sentiment);
 
     Sentiment.$inject = ['Alchemyapi', 'RectHelper'];
 
     function Sentiment(Alchemyapi, RectHelper) {
         var Export = {
             apiName: 'Sentiment',
-            urlGetText: urlGetText,
-            urlGetTargeted: urlGetTargeted,
-            htmlGetText: htmlGetText,
-            htmlGetTargeted: htmlGetTargeted,
-            textGetText: textGetText,
-            textGetTargeted: textGetTargeted
+            url: urlGetText,
+            urlTargeted: urlGetTargeted,
+            html: htmlGetText,
+            htmlTargeted: htmlGetTargeted,
+            text: textGetText,
+            textTargeted: textGetTargeted
         };
         return Export;
 
@@ -37,46 +37,58 @@
         function urlGetTargeted(params) {
             var config = {
                 type: 'url',
-                endpoint: RectHelper.alchemy.api.sentiment.urlGetTargeted,
+                endpoint: RectHelper.alchemy.api.sentiment.urlTargeted,
                 queryParams: params
             };
-            return Alchemyapi.post(config);
+            return Alchemyapi.post(null, config);
         }
 
-        function htmlGetText(params) {
+        function htmlGetText(postData, params) {
             var config = {
-                type: 'html',
-                endpoint: RectHelper.alchemy.api.sentiment.htmlGetText,
-                queryParams: params
-            };
-            return Alchemyapi.post(config);
+                    type: 'html',
+                    endpoint: RectHelper.alchemy.api.sentiment.html,
+                    queryParams: params
+                },
+                data = {
+                    html: postData
+                };
+            return Alchemyapi.post(data, config);
         }
 
-        function htmlGetTargeted(params) {
+        function htmlGetTargeted(postData, params) {
             var config = {
-                type: 'html',
-                endpoint: RectHelper.alchemy.api.sentiment.htmlGetTargeted,
-                queryParams: params
-            };
-            return Alchemyapi.post(config);
+                    type: 'html',
+                    endpoint: RectHelper.alchemy.api.sentiment.htmlTargeted,
+                    queryParams: params
+                },
+                data = {
+                    text: postData
+                };
+            return Alchemyapi.post(data, config);
         }
 
-        function textGetText(params) {
+        function textGetText(postData, params) {
             var config = {
-                type: 'text',
-                endpoint: RectHelper.alchemy.api.sentiment.textGetText,
-                queryParams: params
-            };
-            return Alchemyapi.post(config);
+                    type: 'text',
+                    endpoint: RectHelper.alchemy.api.sentiment.text,
+                    queryParams: params
+                },
+                data = {
+                    html: postData
+                };
+            return Alchemyapi.post(data, config);
         }
 
-        function textGetTargeted(params) {
+        function textGetTargeted(postData, params) {
             var config = {
-                type: 'text',
-                endpoint: RectHelper.alchemy.api.sentiment.textGetTargeted,
-                queryParams: params
-            };
-            return Alchemyapi.post(config);
+                    type: 'text',
+                    endpoint: RectHelper.alchemy.api.sentiment.textTargeted,
+                    queryParams: params
+                },
+                data = {
+                    text: postData
+                };
+            return Alchemyapi.post(data, config);
         }
 
     }
