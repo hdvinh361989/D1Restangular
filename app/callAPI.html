@@ -1,0 +1,19 @@
+<!--Input form-->
+<md-content layout-padding>
+    <div layout layout-margin>
+        <md-input-container flex="">
+            <label>Web URL</label>
+            <input ng-model="callApiCtrl.url">
+        </md-input-container>
+        <div layout layout-align="center center">
+            <md-button class="md-raised md-primary"
+                       ng-click="callApiCtrl.retriveData()">Retrive
+            </md-button>
+        </div>
+    </div>
+    <div layout layout-margin>
+        <textarea ng-model="callApiCtrl.result" disabled
+                  flex=""
+                  style="height: 400px"></textarea>
+    </div>
+</md-content>
