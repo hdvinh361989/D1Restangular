@@ -5,7 +5,7 @@
     angular.module('myApp', [
         'ui.router',
         'ngMaterial',
-        'rectangular.alchemy'
+        'rectangular'
     ])
         .config(configuration)
         .controller('callAPIController', callAPIController);
@@ -28,10 +28,10 @@
 
 
     //callAPIController function
-    callAPIController.$inject = ['$scope', 'AlSentiment', 'AlFace', 'AlNews'];
+    callAPIController.$inject = ['$scope', 'Alchemy'];
 
 
-    function callAPIController($scope, AlSentiment, AlFace, AlNews) {
+    function callAPIController($scope, Alchemy) {
         //Local variable
         var ctrl = this;
 
@@ -67,7 +67,7 @@
 
         //Implement methods
         function urlRetrieveData() {
-            AlSentiment.url({
+            Alchemy.getSentiment.url({
                 url: ctrl.url
             }).then(function (data) {
                 ctrl.urlResult = JSON.stringify(data, null, 4);
@@ -75,25 +75,25 @@
         }
 
         function htmlRetrieveData() {
-            AlSentiment.html(ctrl.html).then(function (data) {
+            Alchemy.getSentiment.html(ctrl.html).then(function (data) {
                 ctrl.htmlResult = JSON.stringify(data, null, 4);
             })
         }
 
         function textRetrieveData() {
-            AlSentiment.text(ctrl.text).then(function (data) {
+            Alchemy.getSentiment.text(ctrl.text).then(function (data) {
                 ctrl.textResult = JSON.stringify(data, null, 4);
             })
         }
 
         function imageRetrieveData() {
-            AlFace.image(ctrl.imageFile).then(function (data) {
+            Alchemy.getFace.image(ctrl.imageFile).then(function (data) {
                 ctrl.imageResult = JSON.stringify(data, null, 4);
             })
         }
 
         function imageUrlRetrieveData() {
-            AlFace.url({
+            Alchemy.getFace.url({
                 url: ctrl.imageUrl
             }).then(function (data) {
                 ctrl.imageUrlResult = JSON.stringify(data, null, 4);
@@ -105,7 +105,7 @@
         }
 
         function newsRetrieveData() {
-            AlNews.getNews({
+            Alchemy.getNews({
                 'start': ctrl.news.start,
                 'end': ctrl.news.end,
                 'maxResults': ctrl.news.maxResults,
