@@ -13,11 +13,14 @@
          * Get Restangular service with configuration for alchemyapi
          * */
         var AlchemyRestangular = Restangular.withConfig(function (RestangularConfigurer) {
+            var headers = {"Content-type": "application/x-www-form-urlencoded"};
+
+            if (typeof navigator != "undefined" && !/WebKit/.test(navigator.userAgent))
+                headers["Accept-Encoding"] = this.acceptEncoding;
+
             //Global config for Restangular
-            RestangularConfigurer.setBaseUrl(RectHelper.alchemy.defaultConfig.baseUrl);
-            RestangularConfigurer.setDefaultHeaders({
-                "Content-type": "application/x-www-form-urlencoded"
-            });
+            RestangularConfigurer.setBaseUrl(RectHelper.alchemy.config.baseUrl);
+            RestangularConfigurer.setDefaultHeaders(headers);
             RestangularConfigurer.setDefaultRequestParams({});
 
             RestangularConfigurer.setFullRequestInterceptor = fullRequestInterceptor;
@@ -87,7 +90,7 @@
             //Assure hat queryParams is not null/ undefined
             queryParams = queryParams || {};
             queryParams.apikey = RectHelper.alchemy.apiKey;
-            queryParams.outputMode = queryParams.outputMode || RectHelper.alchemy.defaultConfig.outputMode;
+            queryParams.outputMode = queryParams.outputMode || RectHelper.alchemy.config.outputMode;
             console.log(queryParams);
             return queryParams;
         }

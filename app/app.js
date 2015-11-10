@@ -12,9 +12,9 @@
 
 
     //Configuation function
-    configuration.$inject = ['$stateProvider', '$urlRouterProvider'];
+    configuration.$inject = ['$stateProvider', '$urlRouterProvider', 'RectHelperProvider'];
 
-    function configuration($stateProvider, $urlRouterProvider) {
+    function configuration($stateProvider, $urlRouterProvider, RectHelperProvider) {
         $stateProvider
             .state('home', {
                 url: '/',
@@ -24,16 +24,24 @@
             });
 
         $urlRouterProvider.otherwise('/');
+
+        //Rectangular config
+        RectHelperProvider.config({
+            alchemy: {
+                apiKey: 'a25e63fd5b691fe370ea09511b79fbd8c0a54d37'
+            }
+        });
     }
 
 
     //callAPIController function
-    callAPIController.$inject = ['$scope', 'Alchemy'];
+    callAPIController.$inject = ['$scope', 'Alchemy', 'Semantria', '$timeout'];
 
 
-    function callAPIController($scope, Alchemy) {
+    function callAPIController($scope, Alchemy, Semantria, $timeout) {
         //Local variable
         var ctrl = this;
+        //var SemantriaSession = new Semantria.session();
 
         //Global variable
         ctrl.url = 'www.bbc.com/news/world-us-canada-34663765';
@@ -54,6 +62,10 @@
             return: 'original.url,enriched.url.title'
         };
         ctrl.newsResult = '';
+        ctrl.semantria = {};
+        ctrl.semantria.status = '';
+        ctrl.semantria.feature = '';
+        ctrl.semantria.processDocument = '';
 
         //Global method
         ctrl.urlRetrieveData = urlRetrieveData;
@@ -63,7 +75,7 @@
         ctrl.imageRetrieveData = imageRetrieveData;
         ctrl.fileChangeHandler = fileChangeHandler;
         ctrl.newsRetrieveData = newsRetrieveData;
-
+        ctrl.initSemantria = initSemantria;
 
         //Implement methods
         function urlRetrieveData() {
@@ -115,6 +127,30 @@
                 ctrl.newsResult = JSON.stringify(data, null, 4);
             })
         }
-    }
 
+        function initSemantria() {
+            Semantria.getStatus().then(function (data) {
+                ctrl.semantria.status = JSON.stringify(data, null, 4);
+            });
+
+            Semantria.getSupportedFeatures().then(function (data) {
+                ctrl.semantria.feature = JSON.stringify(data, null, 4);
+            });
+
+            Semantria.getConfigurations().then(function (data) {
+                console.log(data[0]);
+                var params = [
+                    {
+                        "name": "Vinh Hoang test",
+                        "query": "Amazon AND EC2 AND Cloud"
+                    }
+                ];
+                Semantria.addQueries(params, data[0].config_id).then(function () {
+                    Semantria.getQueries(data[0].config_id).then(function (result) {
+                        ctrl.semantria.processDocument = JSON.stringify(result, null, 4);
+                    })
+                })
+            })
+        }
+    }
 })();
