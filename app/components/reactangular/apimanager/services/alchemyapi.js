@@ -23,13 +23,12 @@
             RestangularConfigurer.setDefaultHeaders(headers);
             RestangularConfigurer.setDefaultRequestParams({});
 
-            RestangularConfigurer.setFullRequestInterceptor = fullRequestInterceptor;
+            RestangularConfigurer.setFullRequestInterceptor(fullRequestInterceptor);
 
 
             //Implement functions
             function fullRequestInterceptor(element, operation, route, url, headers, params, httpConfig) {
-                console.log('Full request interceptor');
-                console.log(element, route, url, headers, params, httpConfig);
+                //Do something here before request send
                 return element;
             }
         });
@@ -37,42 +36,26 @@
 
         var exports = {
             apiProviderName: 'Alchemyapi',
-            post: post,
-            get: get
+            runRequest: runRequest
         };
         return exports;
 
 
         //Global function
-        function post(postData, config, isImage) {
-            var requestParams = prepareRequestParams(config.queryParams),
-                parentRoute = config.parentRoute || 'calls/' + config.endpointType;
+        function runRequest(postData, config, isImage, method){
+            method = method || 'post';
 
-            if (!isImage) {
+            var parentRoute = 'calls/' + config.endpointType,
+                queryParams = prepareRequestParams(config.queryParams);
+
+            if(!isImage)
                 postData = prepareRequestBody(postData);
-            }
 
             return AlchemyRestangular
                 .all(parentRoute)
-                .all(config.endpoint)
-                .post(postData || '', requestParams).then(function (data) {
-                    return data;
-                });
+                .customOperation(method, config.endpoint, queryParams, null, postData);
         }
 
-        function get(config) {
-            var requestParams = prepareRequestParams(config.queryParams),
-                parentRoute = config.parentRoute || 'calls/' + config.endpointType;
-
-            return AlchemyRestangular
-                .all(parentRoute)
-                .doGET(config.endpoint, requestParams).then(function (data) {
-                    return data;
-                })
-        }
-
-
-        //Local function
         function prepareRequestBody(queryParams) {
             var queryData = "";
 
@@ -91,7 +74,6 @@
             queryParams = queryParams || {};
             queryParams.apikey = RectHelper.alchemy.apiKey;
             queryParams.outputMode = queryParams.outputMode || RectHelper.alchemy.config.outputMode;
-            console.log(queryParams);
             return queryParams;
         }
 

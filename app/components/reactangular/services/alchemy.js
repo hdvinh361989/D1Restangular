@@ -271,7 +271,7 @@
                     endpoint: option.endpoint,
                     queryParams: params
                 };
-                return Alchemyapi.post(null, config);
+                return Alchemyapi.runRequest(null, config);
             }
 
             function html(postData, params) {
@@ -283,7 +283,7 @@
                     data = {
                         html: postData
                     };
-                return Alchemyapi.post(data, config);
+                return Alchemyapi.runRequest(data, config);
             }
 
             function text(postData, params) {
@@ -295,7 +295,7 @@
                     data = {
                         text: postData
                     };
-                return Alchemyapi.post(data, config);
+                return Alchemyapi.runRequest(data, config);
             }
 
             function image(imageFile, params) {
@@ -306,7 +306,7 @@
                     endpoint: option.endpoint,
                     queryParams: params
                 };
-                return Alchemyapi.post(imageFile, config, true);
+                return Alchemyapi.runRequest(imageFile, config, true);
             }
 
             function data(params) {
@@ -315,7 +315,7 @@
                     endpoint: RectHelper.alchemy.api.news.getNews,
                     queryParams: params
                 };
-                return Alchemyapi.post(null, config);
+                return Alchemyapi.runRequest(null, config);
             }
         }
     }

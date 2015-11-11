@@ -79,7 +79,7 @@
 
         //Implement methods
         function urlRetrieveData() {
-            Alchemy.getSentiment.url({
+            Alchemy.getSentiment.url(null, {
                 url: ctrl.url
             }).then(function (data) {
                 ctrl.urlResult = JSON.stringify(data, null, 4);
