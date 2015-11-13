@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module('rectangular.apimanager')
+        .module('D1Restangular.apimanager')
         .factory('Semantriaapi', Semantriaapi);
 
     Semantriaapi.$inject = ['RectHelper', 'Restangular'];

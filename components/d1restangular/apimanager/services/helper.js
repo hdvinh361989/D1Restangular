@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module('rectangular.apimanager')
+        .module('D1Restangular.apimanager')
         .provider('RectHelper', RectHelper);
 
     RectHelper.$inject = [];
@@ -19,8 +19,7 @@
                     alchemy: {
                         config: {
                             baseUrl: 'https://gateway-a.watsonplatform.net',
-                            outputMode: 'json',
-                            useCompression: true
+                            outputMode: 'json'
                         },
                         apiKey: '9fc95d1f41757024e1df4fb4066cdaad8ca76cd0',
                         api: {

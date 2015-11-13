@@ -2,7 +2,7 @@
  * Created by vinhhoang on 07/11/2015.
  */
 (function () {
-    angular.module('rectangular')
+    angular.module('D1Restangular')
         .factory('Alchemy', Alchemy);
 
     Alchemy.$inject = ['Alchemyapi', 'RectHelper'];

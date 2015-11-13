@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module('rectangular.apimanager')
+        .module('D1Restangular.apimanager')
         .factory('Alchemyapi', alchemyApi);
 
     alchemyApi.$inject = ['Restangular', 'RectHelper'];
@@ -72,7 +72,7 @@
         function prepareRequestParams(queryParams) {
             //Assure hat queryParams is not null/ undefined
             queryParams = queryParams || {};
-            queryParams.apikey = RectHelper.alchemy.apiKey;
+            queryParams.apikey = queryParams.apikey || RectHelper.alchemy.apiKey;
             queryParams.outputMode = queryParams.outputMode || RectHelper.alchemy.config.outputMode;
             return queryParams;
         }

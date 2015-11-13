@@ -5,7 +5,7 @@
     angular.module('myApp', [
         'ui.router',
         'ngMaterial',
-        'rectangular'
+        'D1Restangular'
     ])
         .config(configuration)
         .controller('callAPIController', callAPIController);
@@ -79,7 +79,7 @@
 
         //Implement methods
         function urlRetrieveData() {
-            Alchemy.getSentiment.url(null, {
+            Alchemy.getSentiment.url({
                 url: ctrl.url
             }).then(function (data) {
                 ctrl.urlResult = JSON.stringify(data, null, 4);
@@ -93,8 +93,10 @@
         }
 
         function textRetrieveData() {
-            Alchemy.getSentiment.text(ctrl.text).then(function (data) {
-                ctrl.textResult = JSON.stringify(data, null, 4);
+            Alchemy.getSentiment.text(ctrl.text, {
+                outputMode: 'xml'
+            }).then(function (data) {
+                ctrl.textResult = data;
             })
         }
 

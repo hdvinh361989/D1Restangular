@@ -2,7 +2,7 @@
  * Created by vinhhoang on 11/11/2015.
  */
 (function () {
-    angular.module('rectangular')
+    angular.module('D1Restangular')
         .factory('Semantria', Semantria);
 
     Semantria.$inject = ['Semantriaapi', 'RectHelper'];
