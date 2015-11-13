@@ -930,7 +930,7 @@
     alchemyApi.$inject = ['Restangular', 'RectHelper'];
 
     function alchemyApi(Restangular, RectHelper) {
-        /*
+        /**
          * Get Restangular service with configuration for alchemyapi
          * */
         var AlchemyRestangular = Restangular.withConfig(function (RestangularConfigurer) {

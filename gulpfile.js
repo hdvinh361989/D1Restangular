@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var minify = require('gulp-compressor');
+var minify = require('gulp-uglify');
 
 var jsSrc = 'components/d1restangular/**/*.js';
 var jsDest = 'dist';
