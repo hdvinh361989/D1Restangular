@@ -32,18 +32,18 @@
              class="md-accent"
              md-selected="callApiCtrl.indexTable[callApiCtrl.current.url][1]">
         <!--Sentiment-->
-        <md-tab label="Sentiment" ui-sref="home.alchemy.sentiment">
-            <div ui-view="alchemyTab-sentiment"></div>
+        <md-tab label="Sentiment">
+            <div ng-include="'templates/alchemy/sentiment.tpl.html'"></div>
         </md-tab>
 
         <!--Face detection-->
-        <md-tab label="Face Detection" ui-sref="home.alchemy.face">
-            <div ui-view="alchemyTab-face"></div>
+        <md-tab label="Face Detection">
+            <div  ng-include="'templates/alchemy/face-detection.tpl.html'"></div>
         </md-tab>
 
         <!--News-->
-        <md-tab label="News" ui-sref="home.alchemy.news">
-            <div ui-view="alchemyTab-news"></div>
+        <md-tab label="News">
+            <div  ng-include="'templates/alchemy/news.tpl.html'"></div>
         </md-tab>
     </md-tabs>
 </script>
@@ -231,24 +231,22 @@
 <!--Semantria-->
 <script id="templates/semantria.tpl.html" type="text/ng-template">
     <md-tabs md-dynamic-height
-             class="md-accent"
-             md-selected="callApiCtrl.indexTable[callApiCtrl.current.url][1]">
+             class="md-accent">
         <!--Status-->
-        <md-tab label="Status"
-                ui-sref="home.semantria.status">
-            <div ui-view="semantria-status"></div>
+        <md-tab label="Status">
+            <div ng-include="'templates/semantria/status.tpl.html'"></div>
         </md-tab>
 
         <!--Feature-->
         <md-tab label="Feature"
-                ui-sref="home.semantria.feature">
-            <div ui-view="semantria-feature"></div>
+                >
+            <div ng-include="'templates/semantria/feature.tpl.html'"></div>
         </md-tab>
 
         <!--Process-->
         <md-tab label="ProcessDocument"
-                ui-sref="home.semantria.process">
-            <div ui-view="semantria-process"></div>
+                >
+            <div ng-include="'templates/semantria/processDocument.tpl.html'"></div>
         </md-tab>
     </md-tabs>
 </script>

@@ -35,40 +35,15 @@
         templateUrl: 'callAPI.html',
         controller: 'callAPIController',
         controllerAs: 'callApiCtrl',
-        redirect: 'home.alchemy.sentiment'
+        redirect: 'home.alchemy'
       })
 
       //Alchemy
       .state('home.alchemy', {
         url: '/alchemy',
-        redirect: 'home.alchemy.sentiment',
         views: {
           'alchemyTab': {
             templateUrl: 'templates/alchemyTab.html'
-          }
-        }
-      })
-      .state('home.alchemy.sentiment', {
-        url: '/sentiment',
-        views: {
-          'alchemyTab-sentiment': {
-            templateUrl: 'templates/alchemy/sentiment.tpl.html'
-          }
-        }
-      })
-      .state('home.alchemy.face', {
-        url: '/face',
-        views: {
-          'alchemyTab-face': {
-            templateUrl: 'templates/alchemy/face-detection.tpl.html'
-          }
-        }
-      })
-      .state('home.alchemy.news', {
-        url: '/news',
-        views: {
-          'alchemyTab-news': {
-            templateUrl: 'templates/alchemy/news.tpl.html'
           }
         }
       })
@@ -76,38 +51,12 @@
       //Semantria
       .state('home.semantria', {
         url: '/semantria',
-        redirect: 'home.semantria.status',
         views: {
           'semantriaTab': {
             templateUrl: 'templates/semantria.tpl.html'
           }
         }
-      })
-      .state('home.semantria.status', {
-        url: '/status',
-        views: {
-          'semantria-status': {
-            templateUrl: 'templates/semantria/status.tpl.html'
-          }
-        }
-      })
-      .state('home.semantria.feature', {
-        url: '/feature',
-        views: {
-          'semantria-feature': {
-            templateUrl: 'templates/semantria/feature.tpl.html'
-          }
-        }
-      })
-      .state('home.semantria.process', {
-        url: '/process',
-        views: {
-          'semantria-process': {
-            templateUrl: 'templates/semantria/processDocument.tpl.html'
-          }
-        }
-      })
-    ;
+      });
 
     $urlRouterProvider.otherwise('/home');
 
@@ -128,20 +77,13 @@
     //Local variable
     var ctrl = this;
     var indexTable = {
-      '/sentiment': [0, 0],
-      '/face': [0, 1],
-      '/news': [0, 2],
-      '/status': [1, 0],
-      '/feature': [1, 1],
-      '/process': [1, 2]
+      '/alchemy': [0],
+      '/semantria': [1]
     };
-    //var SemantriaSession = new Semantria.session();
 
     //Global variable
-    //ctrl.stateId = $state.stateId;
-    //ctrl.subStateId = $stateParams.subStateId;
     ctrl.current = $state.current;
-    console.log(ctrl.current);
+    //console.log(ctrl.current);
     ctrl.indexTable = indexTable;
     ctrl.url = 'www.bbc.com/news/world-us-canada-34663765';
     ctrl.urlResult = '';
@@ -175,6 +117,7 @@
     ctrl.fileChangeHandler = fileChangeHandler;
     ctrl.newsRetrieveData = newsRetrieveData;
     ctrl.initSemantria = initSemantria;
+    ctrl.initSemantria();
 
     //Implement methods
     function urlRetrieveData() {
