@@ -133,7 +133,6 @@
         apiName: 'concept-expansion-beta',
         type: 'gateway',
         callBack: function (header) {
-          header.[]
           concept
             .all('ping')
             .getList(null, header)
