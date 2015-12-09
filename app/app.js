@@ -3,10 +3,10 @@
 // Declare app level module which depends on views, and components
 (function () {
   angular.module('myApp', [
-    'ui.router',
-    'ngMaterial',
-    'D1Restangular'
-  ])
+      'ui.router',
+      'ngMaterial',
+      'D1Restangular'
+    ])
     .config(configuration)
     .controller('callAPIController', callAPIController)
     .run(runTime);
@@ -63,17 +63,19 @@
     //Rectangular config
     RectHelperProvider.config({
       alchemy: {
-        apiKey: 'a25e63fd5b691fe370ea09511b79fbd8c0a54d37'
+        config: {
+          apiKey: 'a25e63fd5b691fe370ea09511b79fbd8c0a54d37'
+        }
       }
     });
   }
 
 
   //callAPIController function
-  callAPIController.$inject = ['$scope', 'Alchemy', 'Semantria', '$timeout', '$state'];
+  callAPIController.$inject = ['$scope', 'Alchemy', 'Semantria', 'Watson', '$timeout', '$state'];
 
 
-  function callAPIController($scope, Alchemy, Semantria, $timeout, $state) {
+  function callAPIController($scope, Alchemy, Semantria, Watson, $timeout, $state) {
     //Local variable
     var ctrl = this;
     var indexTable = {
@@ -118,6 +120,27 @@
     ctrl.newsRetrieveData = newsRetrieveData;
     ctrl.initSemantria = initSemantria;
     ctrl.initSemantria();
+    /*Watson.conceptexpansion.postUpload({
+      "label": "testing",
+      "seeds": [
+        "restaurant",
+        'hotel',
+        'USA'
+      ]
+    }).then(function (data) {
+      console.log(data);
+      Watson.conceptexpansion.getStatus(data.jobid)
+        .then(function (data1) {
+          console.log(data1);
+          Watson.conceptexpansion.putResult(data.jobid)
+            .then(function (data2) {
+              console.log(data2);
+            })
+        });
+    });*/
+    Watson.conceptexpansion.getPing().then(function (data) {
+      console.log(data);
+    });
 
     //Implement methods
     function urlRetrieveData() {
@@ -125,7 +148,7 @@
         url: ctrl.url
       }).then(function (data) {
         ctrl.urlResult = JSON.stringify(data, null, 4);
-      })
+      });
     }
 
     function htmlRetrieveData() {
@@ -182,7 +205,6 @@
       });
 
       Semantria.getConfigurations().then(function (data) {
-        console.log(data[0]);
         var params = [
           {
             "name": "Vinh Hoang test",

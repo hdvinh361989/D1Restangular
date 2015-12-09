@@ -11,14 +11,6 @@
         var exports = {
 
             /**
-            * We have 2 event:
-             *
-             * onRequest: will be fired before each request
-             * onResponse: will be fired after each response
-            * */
-            addEventHandler: addEventHandler,
-
-            /**
              *Get status endpoint
              */
             getStatus: getStatus,
@@ -230,11 +222,8 @@
 
 
         /**
-        * Implement functions
-        * */
-        function addEventHandler(eventHandlers) {
-            Semantriaapi.eventHandlers = angular.merge(Semantriaapi.eventHandlers, eventHandlers);
-        }
+         * Implement functions
+         * */
 
         function getStatus() {
             return Semantriaapi.runRequest("GET", "/status");
@@ -431,19 +420,12 @@
         }
 
         function queueDocument(doc, configId) {
-            var result = Semantriaapi.runRequest("POST", "/document", {
+            return Semantriaapi.runRequest("POST", "/document", {
                 getParams: {
                     config_id: configId
                 },
                 postParams: doc
             });
-
-            if (result) {
-                exports.onAfterResponse(result);
-                return result;
-            }
-
-            return result;
         }
 
         function queueBatchOfDocuments(batch, configId) {
@@ -454,28 +436,16 @@
                 postParams: batch
             });
 
-            if (result) {
-                exports.onAfterResponse(result);
-                return result;
-            }
-
             return result;
         }
 
         function queueCollection(collection, configId) {
-            var result = Semantriaapi.runRequest("POST", "/collection", {
+            return Semantriaapi.runRequest("POST", "/collection", {
                 getParams: {
                     config_id: configId
                 },
                 postParams: collection
             });
-
-            if (result) {
-                exports.onAfterResponse(result);
-                return result;
-            }
-
-            return result;
         }
 
         function getDocument(id, configId) {
@@ -484,18 +454,11 @@
             }
 
             var url = "/document/" + id;
-            var result = Semantriaapi.runRequest("GET", url, {
+            return Semantriaapi.runRequest("GET", url, {
                 getParams: {
                     config_id: configId
                 }
             });
-
-            if (result) {
-                exports.onAfterResponse(result);
-                return result;
-            }
-
-            return result;
         }
 
         function getCollection(id, configId) {

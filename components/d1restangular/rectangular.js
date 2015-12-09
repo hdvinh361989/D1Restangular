@@ -2,14 +2,16 @@
  * Created by vinhhoang on 30/10/2015.
  */
 (function () {
-    angular.module('D1Restangular', [
-        'D1Restangular.apimanager'
+  angular.module('D1Restangular', [
+      'D1Restangular.apimanager',
+      'restangular',
+      'ngStorage'
     ])
-        .config(configuration);
+    .config(configuration);
 
-    configuration.$inject = [];
+  configuration.$inject = [];
 
-    function configuration(){
+  function configuration() {
 
-    }
+  }
 })();

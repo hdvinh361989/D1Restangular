@@ -3,7 +3,8 @@
  */
 (function () {
     angular.module('D1Restangular.apimanager', [
-        'restangular'
+        'restangular',
+        'ngStorage'
     ])
         .config(configuration);
 
