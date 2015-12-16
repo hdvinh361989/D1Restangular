@@ -15,6 +15,7 @@
       };
       angular.merge(RestangularConfigurer, config);
       RestangularConfigurer.setFullRequestInterceptor(fullRequestInterceptor);
+      RestangularConfigurer.setDefaultHttpFields({cache: true});
 
 
       function fullRequestInterceptor(element, operation, route, url, headers, params, httpConfig) {

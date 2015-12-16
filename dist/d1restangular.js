@@ -16,21 +16,6 @@
   }
 })();
 /**
- * Created by vinhhoang on 31/10/2015.
- */
-(function () {
-    angular.module('D1Restangular.apimanager', [
-        'restangular',
-        'ngStorage'
-    ])
-        .config(configuration);
-
-    configuration.$inject = ['RestangularProvider'];
-
-    function configuration(RestangularProvider) {
-    }
-})();
-/**
  * Created by vinhhoang on 07/11/2015.
  */
 (function () {
@@ -902,6 +887,7 @@
       };
       angular.merge(RestangularConfigurer, config);
       RestangularConfigurer.setFullRequestInterceptor(fullRequestInterceptor);
+      RestangularConfigurer.setDefaultHttpFields({cache: true});
 
 
       function fullRequestInterceptor(element, operation, route, url, headers, params, httpConfig) {
@@ -963,6 +949,7 @@
           token: data.token,
           dateTime: data.dateTime
         };
+        console.log(data.datetime);
         $localS[apiName] = token;
 
         return token;
@@ -1119,6 +1106,21 @@
       }
     };
   }
+})();
+/**
+ * Created by vinhhoang on 31/10/2015.
+ */
+(function () {
+    angular.module('D1Restangular.apimanager', [
+        'restangular',
+        'ngStorage'
+    ])
+        .config(configuration);
+
+    configuration.$inject = ['RestangularProvider'];
+
+    function configuration(RestangularProvider) {
+    }
 })();
 /**
  * Created by vinhhoang on 31/10/2015.
