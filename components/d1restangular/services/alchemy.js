@@ -5,9 +5,29 @@
     angular.module('D1Restangular')
         .factory('Alchemy', Alchemy);
 
-    Alchemy.$inject = ['Alchemyapi', 'RectHelper'];
+    Alchemy.$inject = ['RectHelper', 'Restangular'];
 
-    function Alchemy(Alchemyapi, RectHelper) {
+    function Alchemy(RectHelper, Restangular) {
+        /*
+         * Get Restangular service with configuration for alchemyapi
+         * */
+        var AlchemyRestangular = Restangular.withConfig(function (RestangularConfigurer) {
+            var headers = {"Content-type": "application/x-www-form-urlencoded"};
+
+            //Global config for Restangular
+            RestangularConfigurer.setBaseUrl(RectHelper.alchemy.config.baseUrl);
+            RestangularConfigurer.setDefaultHeaders(headers);
+            RestangularConfigurer.setDefaultRequestParams({});
+
+            RestangularConfigurer.setFullRequestInterceptor(fullRequestInterceptor);
+
+            //Implement functions
+            function fullRequestInterceptor(element, operation, route, url, headers, params, httpConfig) {
+                //Do something here before request send
+                return element;
+            }
+        });
+
         var exports = {
             getAuthor: {
                 html: call({
@@ -271,7 +291,7 @@
                     endpoint: option.endpoint,
                     queryParams: params
                 };
-                return Alchemyapi.runRequest(null, config);
+                return runRequest(null, config);
             }
 
             function html(postData, params) {
@@ -283,7 +303,7 @@
                     data = {
                         html: postData
                     };
-                return Alchemyapi.runRequest(data, config);
+                return runRequest(data, config);
             }
 
             function text(postData, params) {
@@ -295,7 +315,7 @@
                     data = {
                         text: postData
                     };
-                return Alchemyapi.runRequest(data, config);
+                return runRequest(data, config);
             }
 
             function image(imageFile, params) {
@@ -306,7 +326,7 @@
                     endpoint: option.endpoint,
                     queryParams: params
                 };
-                return Alchemyapi.runRequest(imageFile, config, true);
+                return runRequest(imageFile, config, true);
             }
 
             function data(params) {
@@ -315,8 +335,43 @@
                     endpoint: RectHelper.alchemy.api.news.getNews,
                     queryParams: params
                 };
-                return Alchemyapi.runRequest(null, config);
+                return runRequest(null, config);
             }
+        }
+
+        function runRequest(postData, config, isImage, method) {
+            method = method || 'post';
+
+            var parentRoute = 'calls/' + config.endpointType,
+              queryParams = prepareRequestParams(config.queryParams);
+
+            if (!isImage)
+                postData = prepareRequestBody(postData);
+
+            return AlchemyRestangular
+              .all(parentRoute)
+              .customOperation(method, config.endpoint, queryParams, null, postData);
+        }
+
+        function prepareRequestBody(queryParams) {
+            var queryData = "";
+
+            //Create request body from queryParams
+            angular.forEach(queryParams, function (value, key) {
+                queryData += key + '=' + value + '&';
+            });
+
+            //remove the last '&' character
+            queryData = queryData.slice(0, -1);
+            return queryData;
+        }
+
+        function prepareRequestParams(queryParams) {
+            //Assure hat queryParams is not null/ undefined
+            queryParams = queryParams || {};
+            queryParams.apikey = queryParams.apikey || RectHelper.alchemy.config.apiKey;
+            queryParams.outputMode = queryParams.outputMode || RectHelper.alchemy.config.outputMode;
+            return queryParams;
         }
     }
 })();

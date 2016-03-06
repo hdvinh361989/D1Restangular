@@ -120,27 +120,9 @@
     ctrl.newsRetrieveData = newsRetrieveData;
     ctrl.initSemantria = initSemantria;
     ctrl.initSemantria();
-    /*Watson.conceptexpansion.postUpload({
-      "label": "testing",
-      "seeds": [
-        "restaurant",
-        'hotel',
-        'USA'
-      ]
-    }).then(function (data) {
-      console.log(data);
-      Watson.conceptexpansion.getStatus(data.jobid)
-        .then(function (data1) {
-          console.log(data1);
-          Watson.conceptexpansion.putResult(data.jobid)
-            .then(function (data2) {
-              console.log(data2);
-            })
-        });
-    });*/
-    Watson.conceptexpansion.getPing().then(function (data) {
-      console.log(data);
-    });
+
+    Watson.conceptInsights.createCorpus(123, '123');
+
 
     //Implement methods
     function urlRetrieveData() {

@@ -3,7 +3,6 @@
  */
 (function () {
   angular.module('D1Restangular', [
-      'D1Restangular.apimanager',
       'restangular',
       'ngStorage'
     ])

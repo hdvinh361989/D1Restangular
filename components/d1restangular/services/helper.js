@@ -3,7 +3,7 @@
  */
 (function () {
   angular
-    .module('D1Restangular.apimanager')
+    .module('D1Restangular')
     .provider('RectHelper', RectHelper);
 
   RectHelper.$inject = [];
@@ -117,8 +117,8 @@
               sdkVersion: "3.9.80",
               xApiVersion: '3.9',
               format: 'json',
-              consumerKey: '8714ce26-89ad-40af-a17e-71c5f4aa6791',
-              consumerMd5Secret: '86071a596a4e183944b97af1833a455f',
+              consumerKey: 'f7253db1-8d4d-4c28-94dc-1f1c8da5fc6a',
+              consumerSecret: '67d08f4c-5a96-46fb-9824-1f9681fb64b2',
               useCompression: true
             }
           },
@@ -128,17 +128,16 @@
                 gateway: 'https://gateway.watsonplatform.net',
                 stream: ''
               },
-              tokenUrl: "http://d1locker.com/watsonapi-v55.php"
+              tokenUrl: "http://d1locker.com/watsonapi-3.php"
             },
             api: {
-              'concept-expansion-beta': 'concept-expansion-beta/api/v1',
+              'concept-expansion': 'concept-expansion-beta/api/v1',
               'dialog': 'dialog/api/v1',
               'personality-insights': 'personality-insights/api/v2',
-              'question-and-answer-beta': 'question-and-answer-beta/api/v1',
-              'relationship-extraction-beta': 'relationship-extraction-beta/api',
+              'relationship-extraction': 'relationship-extraction-beta/api/v1',
               'tradeoff-analytics': 'tradeoff-analytics/api/v1',
-              'concept-insights': 'concept-insights/api',
-              'natural-language-classifier': 'natural-language-classifier/api'
+              'concept-insights': 'concept-insights/api/v2',
+              'natural-language-classifier': 'natural-language-classifier/api/v1'
             }
           }
         };

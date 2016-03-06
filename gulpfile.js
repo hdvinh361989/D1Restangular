@@ -17,8 +17,6 @@ gulp.task('concat', function () {
         .pipe(gulp.dest(jsDest));
 });
 
-gulp.task('watchJs', function () {
-    gulp.watch(jsSrc, function () {
-        gulp.run('concat');
-    })
+gulp.task('watchJs', ['concat'],function () {
+    gulp.watch(jsSrc, ['concat']);
 });
