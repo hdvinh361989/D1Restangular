@@ -117,8 +117,8 @@
               sdkVersion: "3.9.80",
               xApiVersion: '3.9',
               format: 'json',
-              consumerKey: 'f7253db1-8d4d-4c28-94dc-1f1c8da5fc6a',
-              consumerSecret: '67d08f4c-5a96-46fb-9824-1f9681fb64b2',
+              consumerKey: '4767c5ae-f317-4260-b9fa-d50dff8b408f',
+              consumerSecret: 'f8af162f-6d38-4a07-9f26-30823892d65f',
               useCompression: true
             }
           },
