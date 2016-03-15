@@ -897,31 +897,31 @@
       })
     }
 
-    function getClassifiers() {
-      return prepareHeader({
-        apiName: natural.apiName,
-        type: natural.type
-      }).then(function (header) {
-        return natural
-          .all('classifiers')
-          .getList({}, header)
-      })
-    }
-
-    function getClassifier(classifierId) {
-      return prepareHeader({
-        apiName: natural.apiName,
-        type: natural.type
-      }).then(function (header) {
-        if (!classifierId) {
-          $log('getClassifier() missing required field(s)');
-          return null;
-        } else {
+    function getClassifiers(classifierId) {
+      if (!classifierId) {
+        return prepareHeader({
+          apiName: natural.apiName,
+          type: natural.type
+        }).then(function (header) {
           return natural
-            .one('classifiers', classifierId)
-            .get({}, header)
-        }
-      })
+            .all('classifiers')
+            .getList({}, header)
+        })
+      } else {
+        return prepareHeader({
+          apiName: natural.apiName,
+          type: natural.type
+        }).then(function (header) {
+          if (!classifierId) {
+            $log('getClassifier() missing required field(s)');
+            return null;
+          } else {
+            return natural
+              .one('classifiers', classifierId)
+              .get({}, header)
+          }
+        })
+      }
     }
 
     function deleteClassifier(classifierId) {
@@ -984,7 +984,12 @@
       relationshipExtraction: {
         postText: postText
       },
-      naturalLang: {},
+      naturalLang: {
+        createClassifier: createClassifier,
+        getClassifiers: getClassifiers,
+        deleteClassifier: deleteClassifier,
+        classify: classify
+      },
       conceptInsights: {
         getAccounts: getAccounts,
         getGraphs: getGraphs,
